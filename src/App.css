@@ -1,9 +1,27 @@
+@media (max-width: 575px) {
+  .square {
+    width: 6em;
+    height: 6em;
+  }
+}
+@media (min-width: 576px) {
+  .square {
+    width: 8em;
+    height: 8em;
+  }
+}
+
+html {
+  min-height: 100vh;
+}
 body {
   text-align: center;
   background-color: #282c34;
-  min-height: 100vh;
+  color: #fff;
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  margin: 1em;
+  display: flex;
+  justify-content: center;
 }
 
 .App-header {
@@ -11,9 +29,11 @@ body {
   color: white;
 }
 
+.board-row {
+  display: flex;
+}
+
 .square {
-  width: 8em;
-  height: 8em;
   margin: 0.25em;
 }
 
