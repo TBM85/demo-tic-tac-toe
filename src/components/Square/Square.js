@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Component } from "react";
 
-const Square = () => {
-  return (
-    <button className="square"></button>
-  );
-};
+export default class Square extends Component {
+  state = {
+    value: null,
+  };
 
-export default Square;
+  returnsAnXHandler = () => {
+    this.setState({ value: "X" });
+  };
+
+  render() {
+    return (
+      <button className="square" onClick={this.returnsAnXHandler}>
+        <span>{this.state.value}</span>
+      </button>
+    );
+  }
+}
