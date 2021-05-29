@@ -1,4 +1,5 @@
 import './App.css';
+import Game from './components/Game/Game';
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <header className="App-header">
         <h1>Tic Tac Toe</h1>
       </header>
+      <Game />
     </div>
   );
 }
