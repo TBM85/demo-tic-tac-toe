@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Square from "../Square/Square";
 
 export default class Board extends Component {
@@ -7,6 +8,7 @@ export default class Board extends Component {
     isNext: true,
   };
 
+  // Handles what happens when a square is clicked
   handleClick = (i) => {
     const squares = this.state.squares.slice();
 
@@ -18,6 +20,7 @@ export default class Board extends Component {
     this.setState({ squares: squares, isNext: !this.state.isNext });
   }
 
+  // Reproduce a square
   renderSquare = (i) => {
     return (
       <Square
@@ -52,8 +55,6 @@ export default class Board extends Component {
   render() {
     const status = this.state.isNext ? "X" : "O";
     const winner = this.calculateWinner(this.state.squares);
-
-    console.log(!winner);
 
     return (
       <div className="board-container">

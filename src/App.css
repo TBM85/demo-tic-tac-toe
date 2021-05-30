@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Titan+One&display=swap');
 
 @media (max-width: 575px) {
   .square {
@@ -7,6 +7,9 @@
   }
 }
 @media (min-width: 576px) {
+  .game-block {
+    width: 35vw;
+  }
   .square {
     width: 8em;
     height: 8em;
@@ -31,7 +34,7 @@ body {
   font-size: calc(10px + 2vmin);
 }
 
-.board-row {
+.game-board {
   display: flex;
 }
 
@@ -52,5 +55,15 @@ body {
 
 .status span {
   color: #DBA11C;
+}
+
+.game-block {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4em;
+  color: #282C34;
+  background-color: #FFEDCB;
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 1em;
 }
 
