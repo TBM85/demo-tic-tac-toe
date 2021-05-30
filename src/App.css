@@ -67,3 +67,12 @@ body {
   padding: 1em;
 }
 
+button.btn {
+  color: #fff;
+  background: #282C34;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
