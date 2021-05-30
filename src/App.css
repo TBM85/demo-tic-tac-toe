@@ -29,7 +29,6 @@ body {
 
 .App-header {
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .board-row {
@@ -39,6 +38,7 @@ body {
 .square {
   margin: 0.25em;
   cursor: pointer;
+  background: #FFEDCB;
 }
 
 .square > span {
@@ -48,5 +48,9 @@ body {
   -webkit-text-stroke-color: #282C34;
   -webkit-text-stroke-width: 2px;
   font-family: 'Titan One', cursive;
+}
+
+.status span {
+  color: #DBA11C;
 }
 

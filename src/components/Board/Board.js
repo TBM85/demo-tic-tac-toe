@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
-import Square from '../Square/Square';
+import React, { Component } from "react";
+import Square from "../Square/Square";
 
 export default class Board extends Component {
   state = {
-    squares: Array(9).fill(null)
-  }
+    squares: Array(9).fill(null),
+    isNext: true,
+  };
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    squares[i] = this.state.isNext ? "X" : "O";
+    this.setState({ squares: squares, isNext: !this.state.isNext });
   }
 
   renderSquare(i) {
@@ -22,7 +23,7 @@ export default class Board extends Component {
   }
 
   render() {
-    const status = "It's X's turn to play";
+    const status = this.state.isNext ? "X" : "O";
 
     return (
       <div>
@@ -41,8 +42,10 @@ export default class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <div className="status">{status}</div>
+        <div className="status">
+          It's <span>{status}</span>'s turn to play
+        </div>
       </div>
-    )
+    );
   }
 }
