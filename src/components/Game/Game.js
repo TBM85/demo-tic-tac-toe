@@ -10,6 +10,10 @@ export default class Game extends Component {
     gameStarted: false
   }
 
+  handlerStartGameBtn = () => {
+    this.setState({gameStarted: true});
+  }
+
   render() {
     return (
       <div className="game">
@@ -17,7 +21,7 @@ export default class Game extends Component {
           {!this.state.gameStarted ?
             <BlockText>
               <Text>Get three of your marks placed in a row horizontally, vertically or diagonally</Text>
-              <Button>Start Game</Button>
+              <Button clicked={this.handlerStartGameBtn}>Start Game</Button>
             </BlockText>
           :
             <Board />
