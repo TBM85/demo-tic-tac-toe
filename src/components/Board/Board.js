@@ -7,13 +7,18 @@ export default class Board extends Component {
     isNext: true,
   };
 
-  handleClick(i) {
+  handleClick = (i) => {
     const squares = this.state.squares.slice();
+
+    // Ignore a click if someone has won the game or if a square is already filled
+    if (this.calculateWinner(squares) || squares[i]) {
+      return;
+    }
     squares[i] = this.state.isNext ? "X" : "O";
     this.setState({ squares: squares, isNext: !this.state.isNext });
   }
 
-  renderSquare(i) {
+  renderSquare = (i) => {
     return (
       <Square
         value={this.state.squares[i]}
@@ -22,11 +27,39 @@ export default class Board extends Component {
     );
   }
 
+  // Calculate who is the winning player
+  calculateWinner = (squares) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
+
   render() {
     const status = this.state.isNext ? "X" : "O";
+    const winner = this.calculateWinner(this.state.squares);
+
+    console.log(!winner);
 
     return (
-      <div>
+      <div className="board-container">
+        {winner &&
+          <div>The winner is: {winner}</div>
+        }
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
