@@ -8,6 +8,9 @@ function App() {
         <h1>Tic Tac Toe</h1>
       </header>
       <Game />
+      <footer>          
+        <p>© Copyright 2021. <strong>"TBM85"</strong><br /> All rights reserved</p> 
+      </footer>
     </div>
   );
 }
