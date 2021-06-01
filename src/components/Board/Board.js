@@ -82,7 +82,7 @@ export default class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <div className="status">
+        <div className="board-status">
           It's <span>{status}</span>'s turn to play
         </div>
       </div>

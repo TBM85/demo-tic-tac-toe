@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Titan+One&display=swap');
 
+/********** MEDIA QUERIES **********/
+
 @media (max-width: 575px) {
+  header {
+    position: relative !important;
+    margin: 0 auto 2em !important;
+  }
+  .game {
+    margin: 1em;
+  }
   .game-block {
     width: 90%;
     min-width: 75vw;
   }
   .square {
-    width: 6em;
-    height: 6em;
+    width: 6.5em;
+    height: 6.5em;
   }
   footer {
     position: relative !important;
@@ -31,8 +40,12 @@
   }
 }
 
+/********** GENERAL **********/
+
 html {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 body {
@@ -40,17 +53,24 @@ body {
   background-color: #282c34;
   color: #fff;
   font: 14px 'Titan One', cursive;
-  margin: 1em;
   display: flex;
   justify-content: center;
+  margin: auto;
 }
+
+/********** HEADER **********/
 
 .App-header {
   font-size: calc(10px + 2vmin);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-.game-board,
-.game-result {
+/********** GAME BOARD **********/
+
+.game-board {
   display: flex;
   justify-content: center;
 }
@@ -71,11 +91,12 @@ body {
   background: #FFEDCB;
 }
 
-.status span,
+.board-status span,
 .board-result span {
   color: #DBA11C;
 }
 
+/********** GAME TEXT BLOCK **********/
 .game-block {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5em;
@@ -83,6 +104,11 @@ body {
   background-color: #FFEDCB;
   border-radius: 0.5em;
   padding: 1em;
+}
+
+.game-result {
+  display: flex;
+  justify-content: center;
 }
 
 .result {
@@ -126,7 +152,7 @@ body {
 
 .game-winner .winner-text {
   font-family: 'Open Sans', sans-serif;
-  font-size: calc(40px + 3vmin);
+  font-size: calc(30px + 3vmin);
   color: #FFEDCB;
 }
 
