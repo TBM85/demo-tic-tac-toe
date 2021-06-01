@@ -12,6 +12,7 @@ export default class Game extends Component {
     isDraw: false,
     equisArray: [],
     zeroArray: [],
+    finalWinner: "",
   };
 
   // Gets the data of the "Board" component and uses it
@@ -39,6 +40,13 @@ export default class Game extends Component {
     } else if (winner === "O") {
       zeroArray.push("O");
     }
+
+    // Determine the final winner of the game
+    if (equisArray.length === 5) {
+      this.setState({ finalWinner: "X" });
+    } else if (zeroArray.length === 5) {
+      this.setState({ finalWinner: "O" });
+    }
   };
 
   // Makes the game start for the first time
@@ -53,39 +61,57 @@ export default class Game extends Component {
     this.setState({ isDraw: false });
   };
 
+  handlerRestartGameBtn = () => {
+    this.setState({ gameStarted: true });
+    this.setState({ isWinner: "" });
+    this.setState({ equisArray: [] });
+    this.setState({ zeroArray: [] });
+    this.setState({ finalWinner: "" });
+  }
+
   render() {
     const { gameStarted, isWinner, isDraw, equisArray, zeroArray } = this.state;
+
+    let { finalWinner } = this.state;
 
     return (
       <div className="game">
         <div className="game-board">
           {gameStarted ? (
-            !isWinner && !isDraw ? (
-              <Board onPassDataToGame={this.handlerWinner} />
-            ) : !isWinner && isDraw ? (
-              <BlockText>
-                <Text>
-                  <span className="game-token">X O</span>
-                  Draw!
-                </Text>
-                <Button clicked={this.handlerPlayAgainBtn}>Play Again</Button>
-              </BlockText>
+            !finalWinner ? (
+              !isWinner && !isDraw ? (
+                <Board onPassDataToGame={this.handlerWinner} />
+              ) : !isWinner && isDraw ? (
+                <BlockText>
+                  <Text>
+                    <span className="game-token">X O</span>
+                    Draw!
+                  </Text>
+                  <Button className="btn-dark" clicked={this.handlerPlayAgainBtn}>Play Again</Button>
+                </BlockText>
+              ) : (
+                <BlockText>
+                  <Text>
+                    <span className="game-token">{isWinner}</span>
+                    Winner!
+                  </Text>
+                  <div className="game-result">
+                    <div className="result equis-result">
+                      <span className="game-token">X</span>- {equisArray.length}
+                    </div>
+                    <div className="result zero-result">
+                      <span className="game-token">0</span>- {zeroArray.length}
+                    </div>
+                  </div>
+                  <Button className="btn-dark" clicked={this.handlerPlayAgainBtn}>Play Again</Button>
+                </BlockText>
+              )
             ) : (
-              <BlockText>
-                <Text>
-                  <span className="game-token">{isWinner}</span>
-                  Winner!
-                </Text>
-                <div className="game-result">
-                  <div className="result equis-result">
-                    <span className="game-token">X</span>- {equisArray.length}
-                  </div>
-                  <div className="result zero-result">
-                    <span className="game-token">0</span>- {zeroArray.length}
-                  </div>
-                </div>
-                <Button clicked={this.handlerPlayAgainBtn}>Play Again</Button>
-              </BlockText>
+              <div className="game-winner">
+                <span className="winner-player">{finalWinner}</span>
+                <span className="winner-text">Winner !</span>
+                <Button className="btn-light" clicked={this.handlerRestartGameBtn}>Restart Game</Button>
+              </div>
             )
           ) : (
             <BlockText>
@@ -94,7 +120,8 @@ export default class Game extends Component {
                 The player who places three of his pieces in a horizontal,
                 vertical or diagonal row; win the round.
               </Text>
-              <Button clicked={this.handlerStartGameBtn}>Start Game</Button>
+              <Text>The player who first wins 5 rounds, wins the game.</Text>
+              <Button className="btn-dark" clicked={this.handlerStartGameBtn}>Start Game</Button>
             </BlockText>
           )}
         </div>

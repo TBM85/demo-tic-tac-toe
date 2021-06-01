@@ -104,16 +104,46 @@ body {
   -webkit-text-stroke-width: 1px !important;
 }
 
+.game-winner {
+  display: grid;
+}
+
+.game-winner .winner-player {
+  font-family: 'Titan One';
+  font-size: 8em;
+  display: block;
+  color: #DBA11C;
+  -webkit-text-stroke-color: #FFEDCB;
+  -webkit-text-stroke-width: 5px;
+}
+
+.game-winner .winner-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(40px + 3vmin);
+  color: #FFEDCB;
+}
+
+/********** BUTTONS **********/
+
 button.btn {
-  color: #fff;
-  background: #282C34;
+  font-size: 24px;
   border-radius: 0.5em;
   padding: 0.5em 1em;
   margin-top: 1em;
-  font-size: 1.2em;
   cursor: pointer;
 }
 
+button.btn-dark {
+  background: #282C34;
+  color: #fff;
+}
+
+button.btn-light {
+  background: #FFEDCB;
+  color: #282C34;
+}
+
+/********** FOOTER **********/
 footer {
   font-family: 'Open Sans', sans-serif;
   font-size: 0.95em;
