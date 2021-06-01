@@ -5,7 +5,7 @@ import Square from "../Square/Square";
 export default class Board extends Component {
   state = {
     squares: Array(9).fill(null),
-    isNext: true,
+    isNext: true
   };
 
   // Handles what happens when a square is clicked
@@ -18,6 +18,11 @@ export default class Board extends Component {
     }
     squares[i] = this.state.isNext ? "X" : "O";
     this.setState({ squares: squares, isNext: !this.state.isNext });
+
+    // Sends data to the "Game" component
+    const winner = this.calculateWinner(squares);
+
+    this.props.onPassWinner(winner);
   }
 
   // Reproduce a square
@@ -54,13 +59,9 @@ export default class Board extends Component {
 
   render() {
     const status = this.state.isNext ? "X" : "O";
-    const winner = this.calculateWinner(this.state.squares);
 
     return (
       <div className="board-container">
-        {winner &&
-          <div>The winner is: {winner}</div>
-        }
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
