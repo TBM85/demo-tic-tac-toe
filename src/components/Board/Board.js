@@ -22,7 +22,7 @@ export default class Board extends Component {
     // Sends data to the "Game" component
     const winner = this.calculateWinner(squares);
 
-    this.props.onPassWinner(winner);
+    this.props.onPassDataToGame(winner, squares);
   }
 
   // Reproduce a square

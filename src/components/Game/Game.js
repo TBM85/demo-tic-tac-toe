@@ -8,12 +8,27 @@ import Button from "../UI/Button/Button";
 export default class Game extends Component {
   state = {
     gameStarted: false,
-    isWinner: ""
+    isWinner: "",
+    isDraw: false
   }
 
   // Gets the data of the "Board" component and uses it
-  handlerWinner = (winner) => {
+  handlerWinner = (winner, squares) => {
     this.setState({isWinner: winner});
+
+    // Define all existing "X", "0" and null tokens
+    const draw = squares.reduce((obj, square) => {
+      if (!obj[square]) {
+        obj[square] = 0;
+      }
+      obj[square]++;
+      return obj;
+    }, {});
+
+    // Determines when there is a draw in the game
+    if ((draw["X"] === 5) && !winner) {
+      this.setState({isDraw: true});
+    }
   }
 
   // Makes the game start for the first time
@@ -25,19 +40,30 @@ export default class Game extends Component {
   handlerPlayAgainBtn = () => {
     this.setState({gameStarted: true});
     this.setState({isWinner: ""});
+    this.setState({isDraw: false});
   }
 
   render() {
+    const { gameStarted, isWinner, isDraw } = this.state;
+
     return (
       <div className="game">
         <div className="game-board">
-          {this.state.gameStarted ? (
-            !this.state.isWinner ? (
-              <Board onPassWinner={this.handlerWinner} />
+          {gameStarted ? (
+            !isWinner && !isDraw ? (
+              <Board onPassDataToGame={this.handlerWinner} />
+            ) : !isWinner && isDraw ? (
+              <BlockText>
+                <Text>
+                  <span className="game-token">X O</span>
+                  Draw!
+                </Text>
+                <Button clicked={this.handlerPlayAgainBtn}>Play Again</Button>
+              </BlockText>
             ) : (
               <BlockText>
                 <Text>
-                  <span className="game-token">{this.state.isWinner}</span>
+                  <span className="game-token">{isWinner}</span>
                   Winner!
                 </Text>
                 <Button clicked={this.handlerPlayAgainBtn}>Play Again</Button>
