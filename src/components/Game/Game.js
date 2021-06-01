@@ -80,7 +80,7 @@ export default class Game extends Component {
           {gameStarted ? (
             !finalWinner ? (
               !isWinner && !isDraw ? (
-                <Board onPassDataToGame={this.handlerWinner} />
+                <Board onPassDataToGame={this.handlerWinner}  equisArray={equisArray} zeroArray={zeroArray} />
               ) : !isWinner && isDraw ? (
                 <BlockText>
                   <Text>

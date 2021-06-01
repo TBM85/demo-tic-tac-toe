@@ -59,13 +59,20 @@ body {
   display: flex;
 }
 
+.board-result {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2em;
+}
+
 .square {
   margin: 0.25em;
   cursor: pointer;
   background: #FFEDCB;
 }
 
-.status span {
+.status span,
+.board-result span {
   color: #DBA11C;
 }
 

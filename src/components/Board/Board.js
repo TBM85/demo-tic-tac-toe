@@ -58,10 +58,15 @@ export default class Board extends Component {
   }
 
   render() {
+    const { equisArray, zeroArray } = this.props;
     const status = this.state.isNext ? "X" : "O";
 
     return (
       <div className="board-container">
+        <div className="board-result">
+          <div><span>X - </span>{equisArray.length}</div>
+          <div><span>O - </span>{zeroArray.length}</div>
+        </div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
