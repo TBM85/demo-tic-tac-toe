@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// import { useWindowSize } from 'react-use';
+import Confetti from 'react-confetti';
 
 import BlockText from "../UI/BlockText/BlockText";
 import Text from "../UI/Text/Text";
@@ -108,6 +110,7 @@ export default class Game extends Component {
               )
             ) : (
               <div className="game-winner">
+                <Confetti numberOfPieces="1000" />
                 <span className="winner-player">{finalWinner}</span>
                 <span className="winner-text">Winner !</span>
                 <Button className="btn-light" clicked={this.handlerRestartGameBtn}>Restart Game</Button>

@@ -156,6 +156,13 @@ body {
   color: #FFEDCB;
 }
 
+/********** CONFETTI **********/
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
 /********** BUTTONS **********/
 
 button.btn {
