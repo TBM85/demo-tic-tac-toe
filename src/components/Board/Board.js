@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Results from "../Results/Results";
 
 import Square from "../Square/Square";
 
@@ -23,7 +24,7 @@ export default class Board extends Component {
     const winner = this.calculateWinner(squares);
 
     this.props.onPassDataToGame(winner, squares);
-  }
+  };
 
   // Reproduce a square
   renderSquare = (i) => {
@@ -33,7 +34,7 @@ export default class Board extends Component {
         onClick={() => this.handleClick(i)}
       />
     );
-  }
+  };
 
   // Calculate who is the winning player
   calculateWinner = (squares) => {
@@ -50,12 +51,16 @@ export default class Board extends Component {
 
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
         return squares[a];
       }
     }
     return null;
-  }
+  };
 
   render() {
     const { equisArray, zeroArray } = this.props;
@@ -63,10 +68,11 @@ export default class Board extends Component {
 
     return (
       <div className="board-container">
-        <div className="board-result">
-          <div><span>X - </span>{equisArray.length}</div>
-          <div><span>O - </span>{zeroArray.length}</div>
-        </div>
+        <Results
+          className="board-results"
+          equisArray={equisArray}
+          zeroArray={zeroArray}
+        />
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

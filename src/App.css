@@ -79,10 +79,8 @@ body {
   display: flex;
 }
 
-.board-result {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.2em;
+.board-results {
+  justify-content: space-between;
 }
 
 .square {
@@ -106,8 +104,11 @@ body {
   padding: 1em;
 }
 
-.game-result {
+.results {
   display: flex;
+}
+
+.game-results {
   justify-content: center;
 }
 
@@ -119,6 +120,7 @@ body {
   padding: 0.1em 0.5em;
   display: flex;
   justify-content: space-between;
+  font-size: 1.1em;
 }
 
 .game-token {
@@ -132,7 +134,7 @@ body {
 }
 
 .result > .game-token {
-  font-size: 1.15em !important;
+  font-size: 1.1em !important;
   padding-right: 0.25em;
   -webkit-text-stroke-width: 1px !important;
 }

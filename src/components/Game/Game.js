@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-// import { useWindowSize } from 'react-use';
-import Confetti from 'react-confetti';
+import Confetti from "react-confetti";
 
 import BlockText from "../UI/BlockText/BlockText";
 import Text from "../UI/Text/Text";
 import Board from "../Board/Board";
 import Button from "../UI/Button/Button";
+import Results from "../Results/Results";
 
 export default class Game extends Component {
   state = {
@@ -69,7 +69,7 @@ export default class Game extends Component {
     this.setState({ equisArray: [] });
     this.setState({ zeroArray: [] });
     this.setState({ finalWinner: "" });
-  }
+  };
 
   render() {
     const { gameStarted, isWinner, isDraw, equisArray, zeroArray } = this.state;
@@ -82,14 +82,23 @@ export default class Game extends Component {
           {gameStarted ? (
             !finalWinner ? (
               !isWinner && !isDraw ? (
-                <Board onPassDataToGame={this.handlerWinner}  equisArray={equisArray} zeroArray={zeroArray} />
+                <Board
+                  onPassDataToGame={this.handlerWinner}
+                  equisArray={equisArray}
+                  zeroArray={zeroArray}
+                />
               ) : !isWinner && isDraw ? (
                 <BlockText>
                   <Text>
                     <span className="game-token">X O</span>
                     Draw!
                   </Text>
-                  <Button className="btn-dark" clicked={this.handlerPlayAgainBtn}>Play Again</Button>
+                  <Button
+                    className="btn-dark"
+                    clicked={this.handlerPlayAgainBtn}
+                  >
+                    Play Again
+                  </Button>
                 </BlockText>
               ) : (
                 <BlockText>
@@ -97,15 +106,17 @@ export default class Game extends Component {
                     <span className="game-token">{isWinner}</span>
                     Winner!
                   </Text>
-                  <div className="game-result">
-                    <div className="result equis-result">
-                      <span className="game-token">X</span>- {equisArray.length}
-                    </div>
-                    <div className="result zero-result">
-                      <span className="game-token">0</span>- {zeroArray.length}
-                    </div>
-                  </div>
-                  <Button className="btn-dark" clicked={this.handlerPlayAgainBtn}>Play Again</Button>
+                  <Results
+                    className="game-results"
+                    equisArray={equisArray}
+                    zeroArray={zeroArray}
+                  />
+                  <Button
+                    className="btn-dark"
+                    clicked={this.handlerPlayAgainBtn}
+                  >
+                    Play Again
+                  </Button>
                 </BlockText>
               )
             ) : (
@@ -113,7 +124,12 @@ export default class Game extends Component {
                 <Confetti numberOfPieces="1000" />
                 <span className="winner-player">{finalWinner}</span>
                 <span className="winner-text">Winner !</span>
-                <Button className="btn-light" clicked={this.handlerRestartGameBtn}>Restart Game</Button>
+                <Button
+                  className="btn-light"
+                  clicked={this.handlerRestartGameBtn}
+                >
+                  Restart Game
+                </Button>
               </div>
             )
           ) : (
@@ -124,7 +140,9 @@ export default class Game extends Component {
                 vertical or diagonal row; win the round.
               </Text>
               <Text>The player who first wins 5 rounds, wins the game.</Text>
-              <Button className="btn-dark" clicked={this.handlerStartGameBtn}>Start Game</Button>
+              <Button className="btn-dark" clicked={this.handlerStartGameBtn}>
+                Start Game
+              </Button>
             </BlockText>
           )}
         </div>
